@@ -1,4 +1,4 @@
-import { User } from 'src/user/user.entity';
+import { User } from 'src/module/user/user.entity';
 import {
   Column,
   Entity,
@@ -7,13 +7,10 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('posts')
-export class Post {
+@Entity('comments')
+export class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  title: string;
 
   @Column()
   content: string;
@@ -21,7 +18,7 @@ export class Post {
   @Column('userId')
   userId: string;
 
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.comments)
   @JoinColumn({ name: 'userId' })
   user: User;
 }

@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserRole } from './user.enum';
-import { Post } from 'src/blog/entities/post.entity';
-import { Comment } from 'src/blog/entities/comment.entity';
+import { Post } from 'src/module/blog/entities/post.entity';
+import { Comment } from 'src/module/blog/entities/comment.entity';
 
 @Entity('users')
 export class User {
