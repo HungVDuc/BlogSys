@@ -6,6 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Post } from './post.entity';
 
 @Entity('comments')
 export class Comment {
@@ -21,4 +22,11 @@ export class Comment {
   @ManyToOne(() => User, (user) => user.comments)
   @JoinColumn({ name: 'userId' })
   user: User;
+
+  @Column('postId')
+  postId: string;
+
+  @ManyToOne(() => Post, (post) => post.comments)
+  @JoinColumn({ name: 'postId' })
+  post: Post;
 }
