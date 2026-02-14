@@ -1,5 +1,5 @@
 import { DeepPartial, ObjectLiteral } from 'typeorm';
-import { BaseListService } from './base-list.service';
+import { BaseListService } from './base-list-detail.service';
 
 export class BaseCreateService<
   TRepo extends ObjectLiteral,
@@ -9,11 +9,11 @@ export class BaseCreateService<
   }
 
   protected postCreate(dto: DeepPartial<TRepo>, newData: TRepo) {
-    /* */
+    return newData;
   }
 
   async create(dto: DeepPartial<TRepo>) {
-    this.preCreate(dto);
+    await this.preCreate(dto);
     const newData = await this.repository.save(dto);
     return this.postCreate(dto, newData);
   }

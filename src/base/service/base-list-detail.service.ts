@@ -6,4 +6,10 @@ export class BaseListService<TRepo extends ObjectLiteral> {
   getList() {
     return this.repository.find();
   }
+
+  getOne(id: string) {
+    return this.repository.findOne({
+      where: { id } as any,
+    });
+  }
 }
