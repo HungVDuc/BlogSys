@@ -21,7 +21,12 @@ export class PostController {
 
   @Get()
   async getAll(@UserAuth() user: IUserAuth) {
-    return this.service.getList();
+    return this.service.getAll();
+  }
+
+  @Get(':id')
+  async getDetail(@Param() param: MysqlId) {
+    return this.service.getDetail(param.id);
   }
 
   @Post()

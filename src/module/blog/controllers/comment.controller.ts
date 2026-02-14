@@ -21,12 +21,21 @@ export class CommentController {
 
   @Get()
   async getAll(@UserAuth() user: IUserAuth) {
-    return this.service.getList();
+    return this.service.getAll();
+  }
+
+  @Get(':id')
+  async getDetail(@Param() param: MysqlId) {
+    return this.service.getDetail(param.id);
   }
 
   @Post()
   async create(@UserAuth() user: IUserAuth, @Body() dto: CreateCommentDto) {
-    return this.service.create({ ...dto, userId: user.sub });
+    return this.service.create({
+      ...dto,
+      userId: user.sub,
+      postId: dto.postId,
+    });
   }
 
   @Patch(':id')
